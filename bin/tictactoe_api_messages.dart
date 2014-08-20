@@ -40,7 +40,13 @@ class ScoreListRequest {
   @ApiProperty(description: 'Number of scores to return in one request')
   int limit;
 
-  @ApiProperty(description: 'Sort order of scores in response')
+  @ApiProperty(
+    values: const {
+      'WHEN': 'Return most recent scores first',
+      'TEXT': 'Return scores sorted by outcome value'
+    },
+    description: 'Sort order of scores in response'
+  )
   String order;
 }
 
