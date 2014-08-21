@@ -9,7 +9,10 @@ import 'tictactoe_api_messages.dart';
   name: 'tictactoe',
   version: 'v1',
   description: 'Tic Tac Toe API',
-  allowedClientIds: const [API_EXPLORER_CLIENT_ID]
+  allowedClientIds: const [
+    '390037016754-ip34lpdqk9m0ovn1nal65h61s5jiknut.apps.googleusercontent.com',
+    API_EXPLORER_CLIENT_ID
+  ]
 )
 class TicTacToe {
 
