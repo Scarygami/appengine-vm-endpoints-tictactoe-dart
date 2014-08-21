@@ -1,0 +1,33 @@
+
+#signInButton {
+  display: inline-block;
+  background: #dd4b39;
+  color: white;
+  border-radius: 5px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+#signInButton {
+  background: #e74b37;
+}
+#signInButton .label {
+  font-weight: bold;
+}
+#signInButton .icon {
+  background: url('images/plus.png') transparent 5px 50% no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 35px;
+  height: 35px;
+  border-right: #bb3f30 1px solid;
+  padding-right: 5px;
+}
+#signInButton .buttonText {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 35px;
+  padding-right: 35px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Roboto',arial,sans-serif;
+}

@@ -1,19 +1,19 @@
-name: endpoints_tictactor
+name: endpoints_tictactoe
 version: 0.0.1
 author: Gerwin Sturm
 description: A simple Tic Tac Toe game using Google Cloud Endpoints, App Engine, Managed VMs and Dart.
 homepage: https://dart-endpoints.appspot.com/
-
 environment:
   sdk: '>=1.0.0 <2.0.0'
 
 dependencies:
-  endpoints: any
   appengine: any
-  shelf_appengine: any
-  google_plus_v1_api: any
   browser: any
-
+  endpoints: any
+  google_plus_v1_api: any
+  shelf_appengine: any
+  tictactoe_v1_api:
+    path: dependencies/dart_tictactoe_v1_api_client
 
 dependency_overrides:
   shelf_appengine:
