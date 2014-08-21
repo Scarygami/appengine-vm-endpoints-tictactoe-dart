@@ -1,28 +1,27 @@
 import 'package:endpoints/endpoints.dart';
 import 'package:appengine/appengine.dart';
-import 'package:shelf/shelf.dart';
-import 'package:shelf_appengine/shelf_appengine.dart' as shelf_ae;
 import 'tictactoe_api.dart';
 
-_handler(Request request) {
-  var headers = {'Content-Type' : 'text/plain'};
+import 'dart:io';
 
-  if (request.url.toString() != '/') {
-    return ApiServer.cascadeResponse;
+ApiServer api_server;
+
+_handler(HttpRequest request) {
+  if (request.uri.path.startsWith('/_ah/spi/')) {
+    api_server.handleRequest(request);
+    return;
   }
-
-  return context.assets.read('/index.html').then((stream) {
-    return new Response.ok(stream);
-  });
+  if (request.uri.path == '/') {
+    context.assets.serve(request.response, '/index.html');
+    return;
+  }
+  context.assets.serve(request.response, request.uri.path);
 }
 
 void main() {
-  var api_server = new ApiServer();
+  api_server = new ApiServer();
   api_server.addApi(new TicTacToe());
-  var cascade = new Cascade(statusCodes: [501])
-    .add(api_server.handler)
-    .add(_handler)
-    .add(shelf_ae.assetHandler);
-
-  shelf_ae.serve(cascade.handler);
+  runAppEngine(_handler).then((_) {
+    // Server running.
+  });
 }
