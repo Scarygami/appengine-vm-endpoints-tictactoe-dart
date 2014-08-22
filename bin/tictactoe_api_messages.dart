@@ -27,7 +27,7 @@ class ScoreDesc extends ModelDescription {
   final played = const DateTimeProperty();
   final player = const StringProperty();
 
-  const ScoreDesc() : super ('Message');
+  const ScoreDesc(): super('Score');
 }
 
 class ScoreList {
@@ -58,4 +58,6 @@ class ScoreRequest {
 class Board {
   @ApiProperty(description: 'Current state of the game')
   String state;
+
+  Board([this.state]);
 }
