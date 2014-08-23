@@ -1,9 +1,11 @@
+library tictactoe_api;
+
 import 'package:endpoints/endpoints.dart';
 import 'package:cloud_datastore/cloud_datastore.dart';
 import 'package:appengine/appengine.dart';
 import 'dart:async';
 
-import 'tictactoe_api_messages.dart';
+part 'tictactoe_api_messages.dart';
 
 @ApiClass(
   name: 'tictactoe',
@@ -55,6 +57,9 @@ class TicTacToe {
       query.order('outcome');
     } else {
       query.order('-played');
+    }
+    if (request.limit != null) {
+      query.limit(request.limit);
     }
     return query.run().then((List<Score> list) => new ScoreList(list));
   }

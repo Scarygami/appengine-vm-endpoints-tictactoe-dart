@@ -1,6 +1,6 @@
 import 'package:endpoints/endpoints.dart';
 import 'package:appengine/appengine.dart';
-import 'tictactoe_api.dart';
+import 'package:endpoints_tictactoe/tictactoe_api.dart';
 
 import 'dart:io';
 

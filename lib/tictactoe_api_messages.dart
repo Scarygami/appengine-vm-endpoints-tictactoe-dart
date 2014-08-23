@@ -1,5 +1,4 @@
-import 'package:endpoints/endpoints.dart';
-import 'package:cloud_datastore/cloud_datastore.dart';
+part of tictactoe_api;
 
 @ModelMetadata(const ScoreDesc())
 class Score extends Model {
@@ -37,7 +36,11 @@ class ScoreList {
 }
 
 class ScoreListRequest {
-  @ApiProperty(description: 'Number of scores to return in one request')
+  @ApiProperty(
+    description: 'Number of scores to return in one request',
+    variant: 'int32',
+    defaultValue: 10
+  )
   int limit;
 
   @ApiProperty(
@@ -45,7 +48,8 @@ class ScoreListRequest {
       'WHEN': 'Return most recent scores first',
       'TEXT': 'Return scores sorted by outcome value'
     },
-    description: 'Sort order of scores in response'
+    description: 'Sort order of scores in response',
+    defaultValue: 'WHEN'
   )
   String order;
 }
