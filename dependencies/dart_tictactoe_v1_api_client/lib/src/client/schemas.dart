@@ -30,9 +30,6 @@ class Board {
 
 class Score {
 
-  /** Datastore ID of the Score */
-  core.String id;
-
   /** Result of the game. */
   core.String outcome;
 
@@ -44,9 +41,6 @@ class Score {
 
   /** Create new Score from JSON data */
   Score.fromJson(core.Map json) {
-    if (json.containsKey("id")) {
-      id = json["id"];
-    }
     if (json.containsKey("outcome")) {
       outcome = json["outcome"];
     }
@@ -62,9 +56,6 @@ class Score {
   core.Map toJson() {
     var output = new core.Map();
 
-    if (id != null) {
-      output["id"] = id;
-    }
     if (outcome != null) {
       output["outcome"] = outcome;
     }
@@ -110,19 +101,19 @@ class ScoreList {
 
 }
 
-class ScoreRequest {
+class Score_outcome {
 
-  /** Score to be inserted */
+  /** Result of the game. */
   core.String outcome;
 
-  /** Create new ScoreRequest from JSON data */
-  ScoreRequest.fromJson(core.Map json) {
+  /** Create new Score_outcome from JSON data */
+  Score_outcome.fromJson(core.Map json) {
     if (json.containsKey("outcome")) {
       outcome = json["outcome"];
     }
   }
 
-  /** Create JSON Object for ScoreRequest */
+  /** Create JSON Object for Score_outcome */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -133,7 +124,7 @@ class ScoreRequest {
     return output;
   }
 
-  /** Return String representation of ScoreRequest */
+  /** Return String representation of Score_outcome */
   core.String toString() => JSON.encode(this.toJson());
 
 }

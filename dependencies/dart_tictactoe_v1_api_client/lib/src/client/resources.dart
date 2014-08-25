@@ -49,11 +49,11 @@ class ScoresResource_ {
   /**
    * Insert a score for the current user
    *
-   * [request] - ScoreRequest to send in this request
+   * [request] - Score_outcome to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<Score> insert(ScoreRequest request, {core.Map optParams}) {
+  async.Future<Score> insert(Score_outcome request, {core.Map optParams}) {
     var url = "scores";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -81,8 +81,10 @@ class ScoresResource_ {
    * Query scores for the current user
    *
    * [limit] - Number of scores to return in one request
+   *   Default: 10
    *
    * [order] - Sort order of scores in response
+   *   Default: WHEN
    *   Allowed values:
    *     TEXT - Return scores sorted by outcome value
    *     WHEN - Return most recent scores first
