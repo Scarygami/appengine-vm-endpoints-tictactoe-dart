@@ -68,12 +68,11 @@ class TicTacToe {
     path: 'scores',
     name: 'scores.insert',
     method: 'POST',
-    description: 'Insert a score for the current user'
+    description: 'Insert a score for the current user',
+    requestFields: const ['outcome']
   )
-  Future<Score> insertScores(ScoreRequest request, ApiUser user) {
-    var score = new Score();
+  Future<Score> insertScores(Score score, ApiUser user) {
     score.player = user.id;
-    score.outcome = request.outcome;
 
     return context.services.db.commit(inserts: [score]).then((_) => score);
   }

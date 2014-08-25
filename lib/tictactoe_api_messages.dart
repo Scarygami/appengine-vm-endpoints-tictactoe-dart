@@ -2,9 +2,6 @@ part of tictactoe_api;
 
 @ModelMetadata(const ScoreDesc())
 class Score extends Model {
-  @ApiProperty(description: 'Datastore ID of the Score', variant: 'uint64')
-  int id;
-
   @ApiProperty(description: 'Result of the game.')
   String outcome;
 
@@ -52,11 +49,6 @@ class ScoreListRequest {
     defaultValue: 'WHEN'
   )
   String order;
-}
-
-class ScoreRequest {
-  @ApiProperty(description: 'Score to be inserted')
-  String outcome;
 }
 
 class Board {
