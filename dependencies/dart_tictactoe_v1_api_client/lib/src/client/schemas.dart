@@ -101,19 +101,19 @@ class ScoreList {
 
 }
 
-class Score_outcome {
+class ScoreSubmission {
 
   /** Result of the game. */
   core.String outcome;
 
-  /** Create new Score_outcome from JSON data */
-  Score_outcome.fromJson(core.Map json) {
+  /** Create new ScoreSubmission from JSON data */
+  ScoreSubmission.fromJson(core.Map json) {
     if (json.containsKey("outcome")) {
       outcome = json["outcome"];
     }
   }
 
-  /** Create JSON Object for Score_outcome */
+  /** Create JSON Object for ScoreSubmission */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -124,7 +124,7 @@ class Score_outcome {
     return output;
   }
 
-  /** Return String representation of Score_outcome */
+  /** Return String representation of ScoreSubmission */
   core.String toString() => JSON.encode(this.toJson());
 
 }

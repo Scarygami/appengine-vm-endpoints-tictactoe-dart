@@ -49,11 +49,11 @@ class ScoresResource_ {
   /**
    * Insert a score for the current user
    *
-   * [request] - Score_outcome to send in this request
+   * [request] - ScoreSubmission to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<Score> insert(Score_outcome request, {core.Map optParams}) {
+  async.Future<Score> insert(ScoreSubmission request, {core.Map optParams}) {
     var url = "scores";
     var urlParams = new core.Map();
     var queryParams = new core.Map();

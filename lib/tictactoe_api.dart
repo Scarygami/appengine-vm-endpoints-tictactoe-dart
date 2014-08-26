@@ -69,7 +69,8 @@ class TicTacToe {
     name: 'scores.insert',
     method: 'POST',
     description: 'Insert a score for the current user',
-    requestFields: const ['outcome']
+    requestFields: const ['outcome'],
+    requestName: 'ScoreSubmission'
   )
   Future<Score> insertScores(Score score, ApiUser user) {
     score.player = user.id;

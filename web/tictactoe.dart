@@ -134,7 +134,7 @@ void handleClick(MouseEvent e) {
 
 void handleVictory(int status) {
   querySelector('#victory').innerHtml = MESSAGE[status];
-  var result = new ttt.Score_outcome.fromJson({});
+  var result = new ttt.ScoreSubmission.fromJson({});
   result.outcome = STATUS[status];
   tictactoe.scores.insert(result).then((_) {
     queryScores();
