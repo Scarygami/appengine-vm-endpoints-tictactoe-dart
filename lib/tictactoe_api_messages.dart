@@ -26,12 +26,6 @@ class ScoreDesc extends ModelDescription {
   const ScoreDesc(): super('Score');
 }
 
-class ScoreList {
-  List<Score> items;
-
-  ScoreList([this.items = const []]);
-}
-
 class ScoreListRequest {
   @ApiProperty(
     description: 'Number of scores to return in one request',
