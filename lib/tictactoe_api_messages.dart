@@ -26,25 +26,6 @@ class ScoreDesc extends ModelDescription {
   const ScoreDesc(): super('Score');
 }
 
-class ScoreListRequest {
-  @ApiProperty(
-    description: 'Number of scores to return in one request',
-    variant: 'int32',
-    defaultValue: 10
-  )
-  int limit;
-
-  @ApiProperty(
-    values: const {
-      'WHEN': 'Return most recent scores first',
-      'TEXT': 'Return scores sorted by outcome value'
-    },
-    description: 'Sort order of scores in response',
-    defaultValue: 'WHEN'
-  )
-  String order;
-}
-
 class Board {
   @ApiProperty(description: 'Current state of the game')
   String state;

@@ -50,16 +50,11 @@ class TicTacToe {
     method: 'GET',
     description: 'Query scores for the current user'
   )
-  Future<ListResponse<Score>> listScores(ScoreListRequest request, ApiUser user) {
-    var query = context.services.db.query(Score);
+  Future<ListResponse<Score>> listScores(ListRequest<Score> request, ApiUser user) {
+    var query = request.query;
     query.filter('player =', user.id);
-    if (request.order == 'TEXT') {
-      query.order('outcome');
-    } else {
+    if (request.order == null) {
       query.order('-played');
-    }
-    if (request.limit != null) {
-      query.limit(request.limit);
     }
     return query.run().then((List<Score> list) => new ListResponse<Score>(list));
   }

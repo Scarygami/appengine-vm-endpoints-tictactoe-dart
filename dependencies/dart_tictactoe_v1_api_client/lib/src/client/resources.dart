@@ -80,27 +80,23 @@ class ScoresResource_ {
   /**
    * Query scores for the current user
    *
-   * [limit] - Number of scores to return in one request
+   * [limit] - Number of items to return in one request
    *   Default: 10
    *
-   * [order] - Sort order of scores in response
-   *   Default: WHEN
-   *   Allowed values:
-   *     TEXT - Return scores sorted by outcome value
-   *     WHEN - Return most recent scores first
+   * [offset] - Offset for paging through results
+   *
+   * [order] - Define property name for sorting, prefix with - for descending order
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<ScoreList> list({core.int limit, core.String order, core.Map optParams}) {
+  async.Future<ScoreList> list({core.int limit, core.int offset, core.String order, core.Map optParams}) {
     var url = "scores";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
     if (limit != null) queryParams["limit"] = limit;
-    if (order != null && !["TEXT", "WHEN"].contains(order)) {
-      paramErrors.add("Allowed values for order: TEXT, WHEN");
-    }
+    if (offset != null) queryParams["offset"] = offset;
     if (order != null) queryParams["order"] = order;
     if (optParams != null) {
       optParams.forEach((key, value) {
