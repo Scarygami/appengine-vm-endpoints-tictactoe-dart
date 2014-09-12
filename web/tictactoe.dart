@@ -1,8 +1,7 @@
 import 'dart:html';
-import 'package:tictactoe_v1_api/tictactoe_v1_api_browser.dart' as tttApi;
-import 'package:tictactoe_v1_api/tictactoe_v1_api_client.dart' as ttt;
-import 'package:google_oauth2_client/google_oauth2_browser.dart';
-import 'package:google_plus_v1_api/plus_v1_api_browser.dart' as plusApi;
+import 'package:myapi/tictactoe/v1.dart';
+import 'package:googleapis/plus/v1.dart';
+import 'package:googleapis_auth/auth_browser.dart';
 
 const List STATUS = const ['NOT_DONE', 'WON', 'LOST', 'TIE'];
 const List MESSAGE = const ['', 'You win!', 'You lost!', 'You tied!'];
@@ -11,9 +10,10 @@ const int WON = 1;
 const int LOST = 2;
 const int TIE = 3;
 
-final auth = new GoogleOAuth2('390037016754-ip34lpdqk9m0ovn1nal65h61s5jiknut.apps.googleusercontent.com', ['profile']);
-final plus = new plusApi.Plus(auth);
-final tictactoe = new tttApi.Tictactoe(auth);
+final clientId = new ClientId('390037016754-ip34lpdqk9m0ovn1nal65h61s5jiknut.apps.googleusercontent.com', null);
+final scopes = ['profile'];
+PlusApi plus;
+TictactoeApi tictactoe;
 
 bool waiting = true;
 
@@ -47,11 +47,11 @@ void resetGame() {
 }
 
 void queryScores() {
-  tictactoe.scores.list().then((ttt.ScoreList list) {
+  tictactoe.scores.list().then((ScoreList list) {
     var history = querySelector('#gameHistory');
     history.innerHtml = '';
     if (list != null && list.items != null) {
-      list.items.forEach((ttt.Score score) {
+      list.items.forEach((Score score) {
         var li = new LIElement();
         li.innerHtml = score.outcome;
         history.append(li);
@@ -116,9 +116,9 @@ void handleClick(MouseEvent e) {
   var board = getBoard();
   var status = checkVictory(board);
   if (status == NOT_DONE) {
-    var request = new ttt.Board.fromJson({});
+    var request = new Board.fromJson({});
     request.state = board;
-    tictactoe.board.getmove(request).then((ttt.Board response) {
+    tictactoe.board.getmove(request).then((Board response) {
       setBoard(response.state);
       var status = checkVictory(response.state);
       if (status == NOT_DONE) {
@@ -134,25 +134,26 @@ void handleClick(MouseEvent e) {
 
 void handleVictory(int status) {
   querySelector('#victory').innerHtml = MESSAGE[status];
-  var result = new ttt.ScoreSubmission.fromJson({});
+  var result = new ScoreSubmission.fromJson({});
   result.outcome = STATUS[status];
   tictactoe.scores.insert(result).then((_) {
     queryScores();
   });
 }
 
-void handleAuth(Token t) {
-  if (t != null) {
+void handleAuth(AuthClient client) {
+  if (client != null) {
     querySelector('#signinButtonContainer').classes.remove('visible');
     querySelector('#signout').classes.add('visible');
-
-    plus.makeAuthRequests = true;
-    plus.people.get('me', optParams: {'fields': 'displayName'}).then((p) {
+    plus = new PlusApi(client);
+    tictactoe = new TictactoeApi(client);
+    plus.people.get('me').then((p) {
       querySelector('#userLabel').innerHtml = p.displayName;
       startGame();
     });
-    tictactoe.makeAuthRequests = true;
   } else {
+    plus = null;
+    tictactoe = null;
     querySelector('#signinButtonContainer').classes.add('visible');
     querySelector('#signout').classes.remove('visible');
     querySelector('#userLabel').innerHtml = '(not signed in)';
@@ -161,12 +162,12 @@ void handleAuth(Token t) {
 }
 
 void main() {
-  auth.login(immediate: true).then(handleAuth).catchError((_) => handleAuth(null));
-  querySelector('#signInButton').onClick.listen((_) {
-    auth.login().then(handleAuth).catchError((_) => handleAuth(null));
+  createImplicitBrowserFlow(clientId, scopes).then((BrowserOAuth2Flow flow) {
+    querySelector('#signInButton').onClick.listen((_) {
+      flow.clientViaUserConsent().then(handleAuth).catchError((_) => handleAuth(null));
+    });
   });
   querySelector('#signout').onClick.listen((_) {
-    auth.logout();
     handleAuth(null);
   });
   querySelector('#restartButton').onClick.listen((_) => resetGame());

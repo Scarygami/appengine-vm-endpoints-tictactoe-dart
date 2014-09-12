@@ -9,9 +9,10 @@ dependencies:
   appengine: any
   browser: any
   endpoints: any
-  google_plus_v1_api: any
-  tictactoe_v1_api:
-    path: dependencies/dart_tictactoe_v1_api_client
+  googleapis: any
+  googleapis_auth: any
+  myapi:
+    path: dependencies/myapi
 dependency_overrides:
   shelf_appengine:
     git:
