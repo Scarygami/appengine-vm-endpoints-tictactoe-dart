@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:myapi/tictactoe/v1.dart';
+import 'package:endpoints_tictactoe/myapi/tictactoe/v1.dart';
 import 'package:googleapis/plus/v1.dart';
 import 'package:googleapis_auth/auth_browser.dart';
 

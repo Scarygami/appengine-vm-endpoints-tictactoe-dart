@@ -1,13 +1,16 @@
 part of tictactoe_api;
 
-@ModelMetadata(const ScoreDesc())
+@Kind()
 class Score extends Model {
+  @StringProperty()
   @ApiProperty(description: 'Result of the game.')
   String outcome;
 
+  @DateTimeProperty()
   @ApiProperty(description: 'Time stamp, will be added automatically when the score is recorded.')
   DateTime played;
 
+  @StringProperty()
   @ApiProperty(description: 'Google ID of the player')
   String player;
 
@@ -15,15 +18,6 @@ class Score extends Model {
     // Automatically set current date for new messages
     played = new DateTime.now();
   }
-}
-
-class ScoreDesc extends ModelDescription {
-  final id = const IntProperty();
-  final outcome = const StringProperty();
-  final played = const DateTimeProperty();
-  final player = const StringProperty();
-
-  const ScoreDesc(): super('Score');
 }
 
 class Board {

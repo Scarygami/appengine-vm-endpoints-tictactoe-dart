@@ -27,8 +27,8 @@ class TictactoeApi {
   BoardResourceApi get board => new BoardResourceApi(_requester);
   ScoresResourceApi get scores => new ScoresResourceApi(_requester);
 
-  TictactoeApi(http.Client client) : 
-      _requester = new common_internal.ApiRequester(client, "https://dart-endpoints.appspot.com/", "/_ah/api/tictactoe/v1/");
+  TictactoeApi(http.Client client) :
+    _requester = new common_internal.ApiRequester(client, "https://dart-endpoints.appspot.com/", "/_ah/api/tictactoe/v1/");
 }
 
 
@@ -36,7 +36,7 @@ class TictactoeApi {
 class BoardResourceApi {
   final common_internal.ApiRequester _requester;
 
-  BoardResourceApi(common_internal.ApiRequester client) : 
+  BoardResourceApi(common_internal.ApiRequester client) :
       _requester = client;
 
   /**
@@ -86,7 +86,7 @@ class BoardResourceApi {
 class ScoresResourceApi {
   final common_internal.ApiRequester _requester;
 
-  ScoresResourceApi(common_internal.ApiRequester client) : 
+  ScoresResourceApi(common_internal.ApiRequester client) :
       _requester = client;
 
   /**

@@ -1,7 +1,7 @@
 library tictactoe_api;
 
 import 'package:endpoints/endpoints.dart';
-import 'package:cloud_datastore/cloud_datastore.dart';
+import 'package:gcloud/db.dart';
 import 'package:appengine/appengine.dart';
 import 'dart:async';
 
@@ -56,7 +56,7 @@ class TicTacToe {
     if (request.order == null) {
       query.order('-played');
     }
-    return query.run().then((List<Score> list) => new ListResponse<Score>(list));
+    return query.run().toList().then((List<Score> list) => new ListResponse<Score>(list));
   }
 
   @ApiMethod(

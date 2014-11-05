@@ -12,10 +12,10 @@ _handler(HttpRequest request) {
     return;
   }
   if (request.uri.path == '/') {
-    context.assets.serve(request.response, '/index.html');
+    context.assets.serve('/index.html');
     return;
   }
-  context.assets.serve(request.response, request.uri.path);
+  context.assets.serve(request.uri.path);
 }
 
 void main() {
