@@ -14,8 +14,8 @@ is configured to use https://dart-endpoints.appspot.com/ as API root.
 If you want to host it yourself you will need to update the client library
 for your App Engine project. You have two options to do this.
 
-You will also have to replace the Client ID in [web/tictactoe.dart](web/tictactoe.dart#L14)
-and [lib/tictactoe_api.dart](lib/tictactoe_api.dart#L13) with your own.
+You will also have to replace the Client ID in [web/tictactoe.dart](web/tictactoe.dart#L13)
+and [lib/tictactoe_api.dart](lib/tictactoe_api.dart#L15) with your own.
 
 ##### The proper way
 
