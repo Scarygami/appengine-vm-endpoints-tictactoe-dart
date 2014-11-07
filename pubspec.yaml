@@ -10,4 +10,4 @@ dependencies:
   browser: any
   endpoints: any
   googleapis: any
-  googleapis_auth: '>=0.2.0'
+  googleapis_auth: any
