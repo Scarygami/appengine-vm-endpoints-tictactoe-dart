@@ -10,9 +10,6 @@ dependencies:
   browser: any
   endpoints: any
   googleapis: any
-  googleapis_auth: any
-dependency_overrides:
-  endpoints:
-    git:
-      url: git@github.com:Scarygami/dart_endpoints.git
-      ref: master
+  googleapis_auth: '>=0.2.0'
+
+

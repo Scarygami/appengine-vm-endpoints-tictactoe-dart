@@ -163,6 +163,7 @@ void handleAuth(AuthClient client) {
 
 void main() {
   createImplicitBrowserFlow(clientId, scopes).then((BrowserOAuth2Flow flow) {
+    flow.clientViaUserConsent(immediate: true).then(handleAuth).catchError((_) => handleAuth(null));
     querySelector('#signInButton').onClick.listen((_) {
       flow.clientViaUserConsent().then(handleAuth).catchError((_) => handleAuth(null));
     });
