@@ -10,7 +10,7 @@ const int WON = 1;
 const int LOST = 2;
 const int TIE = 3;
 
-final clientId = new ClientId('390037016754-ip34lpdqk9m0ovn1nal65h61s5jiknut.apps.googleusercontent.com', null);
+final clientId = new ClientId('<YOUR CLIENT ID>', null);
 final scopes = ['profile'];
 PlusApi plus;
 TictactoeApi tictactoe;
